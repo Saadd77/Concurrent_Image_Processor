@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  concurrent-image-processor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: concurrent-image-processor
+    volumes:
+      - ./input_images:/app/input_images
+      - ./output_images:/app/output_images
+    environment:
+      - JAVA_OPTS=-Xmx2g -Xms512m
+    # If your application has a web interface, uncomment and adjust:
+    # ports:
+    #   - "8080:8080"
+
+    # For development, you might want to override the command:
+    # command: ["./gradlew", "run", "--continuous"]
+
+    # For production, you might want to restart policy:
+    # restart: unless-stopped
